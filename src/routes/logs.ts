@@ -27,12 +27,13 @@ logsRouter.use(express.urlencoded({ extended: false }));
 
 logsRouter.get("/api/users/:id/logs", async (req: Request, res: Response) => {
     try {
+        console.log("GET LOGS")
         const id = req?.params?.id;
         const from = req.query.from as string;
         const to = req.query.to;
         let limit = parseInt(req.query.limit as string);
         const queryOptions = {} as {date?: {"$lt"?: number, "$gt"?: number}};
-        console.log({from,to,limit})
+        console.log({id,from,to,limit,params : req.params,query: req.query})
         // console.log(req.body)
         // let newExercise = {userId: req.body[':_id'], description: req.body.description, duration: Number(req.body.duration), date: new Date(req.body.date).toDateString()} as Exercise;
         // console.log({newExercise});
