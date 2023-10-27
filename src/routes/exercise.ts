@@ -33,7 +33,7 @@ exercisesRouter.post("/api/users/:id/exercises", async (req: Request, res: Respo
         if (isNaN(date) ) {
             date = new Date().getTime()
         }
-        let newExercise = {userId: req.body[':_id'], description: req.body.description, duration: Number(req.body.duration), date: date} as Exercise;
+        let newExercise = {userId: id as string, description: req.body.description, duration: Number(req.body.duration), date: date} as Exercise;
         console.log({newExercise});
         const query = { _id: new ObjectId(id) };
         const user = (await collections.users!.findOne<User>(query)) as User;

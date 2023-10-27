@@ -1,7 +1,7 @@
 import { ObjectId } from "mongodb";
 
 export default interface Excercise {
-    userId: ObjectId;
+    userId: string;
     _id?: ObjectId;
     description: string;
     duration: Number;
