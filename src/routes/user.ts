@@ -24,7 +24,7 @@ usersRouter.get("api/users/:id", async (req: Request, res: Response) => {
         const user = (await collections.users!.findOne<User>(query)) as User;
 
         if (user) {
-            res.status(200).send(user);
+            res.status(200).json(user);
         }
     } catch (error) {
         res.status(404).send(`Unable to find matching document with id: ${req.params.id}`);
@@ -38,7 +38,7 @@ usersRouter.post("/api/users", async (req: Request, res: Response) => {
         console.log(newUser)
         const result = await collections.users!.insertOne(newUser);
         result
-            ? res.status(201).send(`{"username":"${newUser.username}","_id":"${result.insertedId}"}`)
+            ? res.status(201).json({username: newUser.username, "_id": result.insertedId})
             : res.status(500).send("Failed to create a new user.");
     } catch (error:any) {
         console.error(error);
