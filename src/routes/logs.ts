@@ -30,7 +30,7 @@ logsRouter.get("/api/users/:id/logs", async (req: Request, res: Response) => {
         console.log("GET LOGS")
         const id = req?.params?.id;
         const from = req.query.from as string;
-        const to = req.query.to;
+        const to = req.query.to as string;
         let limit = parseInt(req.query.limit as string);
         const queryOptions = {} as {date?: {"$lt"?: number, "$gt"?: number}};
         console.log({id,from,to,limit,params : req.params,query: req.query})
@@ -47,7 +47,7 @@ logsRouter.get("/api/users/:id/logs", async (req: Request, res: Response) => {
             }
         }
         if (to !== undefined) {
-            const dateNumber = new Date(from).getTime()
+            const dateNumber = new Date(to).getTime()
             if (!isNaN(dateNumber)) {
                 if (!queryOptions.date) {
                     queryOptions.date = {};
