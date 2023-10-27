@@ -55,6 +55,7 @@ logsRouter.get("/api/users/:id/logs", async (req: Request, res: Response) => {
                 queryOptions.date!["$lt"] = dateNumber;
             }
         }
+        console.log(queryOptions);
         if (isNaN(limit)) {
             limit = 0;
         }
